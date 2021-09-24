@@ -1,0 +1,30 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: final-worker2-deployment-test
+  labels:
+    app: final-worker2-test
+    env: test
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: final-worker2-test
+  template:
+    metadata:
+      labels:
+        app: final-worker2-test
+        env: test
+        
+    spec:
+      containers:
+        - name: final-worker2-test
+          image: kdnguyen205/coe332-final:1.0
+          imagePullPolicy: Always
+          env:
+          - name: FLASK_IP
+            value: '10.102.71.56'
+          - name: REDIS_IP
+            value: '10.111.232.183'
+          command: ["python3", "worker2.py"]
