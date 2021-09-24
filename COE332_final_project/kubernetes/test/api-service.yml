@@ -1,0 +1,15 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: final-api-service-test
+  labels:
+    env: test
+spec:
+  type: ClusterIP
+  selector:
+    app: final-api-test
+  ports:
+  - name: api-ports
+    port: 5000
+    targetPort: 5000
